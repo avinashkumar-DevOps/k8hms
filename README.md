@@ -13,9 +13,7 @@ The system is designed to handle hospital operations such as:
 - Notifications (email/SMS)
 
 It follows **DevOps best practices** including CI/CD, containerization, security scanning, and monitoring.
-
----
-
+----------------------------------------------------------------------------------------------------------------------------------------------------------
 ## 🧱 Tech Stack
 
 - **Backend:** Node.js (Express)
@@ -27,7 +25,7 @@ It follows **DevOps best practices** including CI/CD, containerization, security
 - **Monitoring:** Prometheus + Grafana
 - **Cloud (Recommended):** GCP (GKE)
 
----
+----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## 🏗 Architecture Overview
 
@@ -41,27 +39,97 @@ Microservices:
 - auth-service
 - notification-service
 
----
+----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## ⚙️ Installation & Setup Guide
 
 ### 🔹 1. Clone Repository
 
 ```bash
-git clone https://github.com/your-username/hospital-management-system.git
-cd hospital-management-system
+git clone https://github.com/avinashkumar-DevOps/k8hms.git
+cd k8hms
 ```
-
----
+------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### 🔹 2. Run Locally (Docker Compose)
 
 ```bash
 docker-compose up --build
 ```
-
 Access:
 ```
 http://localhost:8080
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+### 🔹 3. Run Individual Service (Manual)
+
+```bash
+cd services/patient-service
+npm install
+npm start
+```
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+### 🔹 4. Run Tests
+
+```bash
+npm test
+```
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+### 🔹 5. Build Docker Image
+
+```bash
+docker build -t your-dockerhub/patient-service ./services/patient-service
+```
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+### 🔹 6. Push to Docker Hub
+
+```bash
+docker push your-dockerhub/patient-service
+```
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+### 🔹 7. Deploy to Kubernetes
+
+Make sure Kubernetes cluster is running (Minikube / GKE)
+
+```bash
+kubectl apply -f k8s/
+```
+
+Check pods:
+```bash
+kubectl get pods
+```
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+### 🔹 8. Access Application (NodePort)
+
+```bash
+kubectl get svc
+```
+
+Open in browser using NodePort or Ingress URL.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+## 🔄 CI/CD Pipeline Flow
+
+GitHub → Jenkins → Test → SonarQube → Docker Build → Trivy Scan → Push → Kubernetes Deploy
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+## 🔐 Security Features
+
+- Container scanning using Trivy
+- Static code analysis with SonarQube
+- Secrets management via Kubernetes Secrets
+Avinash Kumar
 ```
 Avinash Kumar
