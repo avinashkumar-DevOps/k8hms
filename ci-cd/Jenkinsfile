@@ -1,0 +1,7 @@
+pipeline {
+ agent any
+ stages {
+  stage('Build'){steps{echo 'Build all services'}}
+  stage('Deploy'){steps{echo 'Deploy to K8s'}}
+ }
+}
